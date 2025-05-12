@@ -12,7 +12,7 @@ const user = new mongoose.Schema(
       unique: true,
     },
     password: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
@@ -22,7 +22,8 @@ const user = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      default: "",
+      default: "https://cdn-icons-png.flaticon.com/128/3177/3177440.png",
+
     },
     role: {
       type: String,
