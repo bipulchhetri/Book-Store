@@ -3,7 +3,7 @@ const book=new mongoose.Schema(
     {
         url:{
             type:String,
-            required:true,
+            // required:true,
         },
         title:{
             type:String,
@@ -19,11 +19,11 @@ const book=new mongoose.Schema(
         },
         desc:{
             type:String,
-            required:true,
+            // required:true,
         },
         language:{
             type:String,
-            required:true,
+            // required:true,
         },
 
     },

@@ -1,39 +1,20 @@
-// const express=require("express")
-// const app=express();
-// require("dotenv").config();
-// require('./connection/cont')
-// const User=require("./routes/user")
-// // routes
-// app.use("/api/",User)
-
-
-// // json data
-// app.use(express.json)
-
-// app.get('/',(req,res)=>{
-//     res.send("hello server")
-// });
-// // creating PORT
-// app.listen(process.env.PORT,()=>{
-//     console.log(`SERVER IS RUNNING ${process.env.PORT}`);
-// })
-
 const express = require("express");
 const app = express();
 require("dotenv").config();
-require('./connection/cont');
+require("./connection/cont"); // MongoDB connection
 
-// Middleware for JSON parsing
+// Middleware
 app.use(express.json());
 
-// Import routes
+// Routes
 const userRoutes = require("./routes/user");
+const bookRoutes = require("./routes/book");
 
-// Use routes
-app.use("/api", userRoutes);
+app.use("/api/users", userRoutes);  // All user routes under /api/users
+app.use("/api/books", bookRoutes);  // All book routes under /api/books
 
 // Root route
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.send("Hello Server");
 });
 
