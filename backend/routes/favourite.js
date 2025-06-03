@@ -1,38 +1,9 @@
-// const router=require("express").Router();
-// const user=require("../models/user");
-// const{authenticateToken}=require('./userAuth');
-
-
-// // add to favourite
-
-// router.put('/add-favourite',authenticateToken,async(req,res)=>{
-//     try{
-// const {bookid,id}=req.header;
-// const userData=await user.findById(id);
-// const isBookFav=userData.favourites.includes(bookid);
-// if(isBookFav)
-// {
-//     return res.status(200).json({message:"Book already in favourties"})
-// }
-// await user.findByIdAndUpdate(id,{$push:{favourites:bookid}})
-// return res.status(200).json({message:"Book added to favourite"})
-//  } catch(error)
-//     {
-// return res.status(400).json({message:"Internal server error"})
-//     }
-// })
-
-// module.exports=router;
-
-
-
-
 const router = require("express").Router();
 const User = require("../models/user");
 const { authenticateToken } = require("./userAuth");
 
 //add favourite book to user model
-router.put("/add-favourite", authenticateToken, async (req, res) => {
+router.put("/add-to-favourite", authenticateToken, async (req, res) => {
   try {
     const { bookid, id } = req.headers;
     const userData = await User.findById(id);

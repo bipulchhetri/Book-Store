@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+
 const user = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true,
       unique: true,
     },
     email: {
@@ -14,23 +14,20 @@ const user = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      unique: true,
     },
     address: {
       type: String,
-      // required: true,
     },
     avatar: {
       type: String,
       default: "https://cdn-icons-png.flaticon.com/128/3177/3177440.png",
-
     },
     role: {
       type: String,
       default: "user",
       enum: ["user", "admin"],
     },
-    favourites: [
+    favourite: [
       {
         type: mongoose.Types.ObjectId,
         ref: "books",
@@ -51,4 +48,5 @@ const user = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 module.exports = mongoose.model("user", user);

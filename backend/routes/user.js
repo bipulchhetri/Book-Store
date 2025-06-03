@@ -1,100 +1,130 @@
 const router = require("express").Router();
-const user = require("../models/user");
 const bcrypt = require("bcryptjs");
-const jwt= require ("jsonwebtoken");
+const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 const { authenticateToken } = require("./userAuth");
-//Sign up function
-router.post("/signup", async (req, res) => {
+
+//Sign - up
+router.post("/sign-up", async (req, res) => {
   try {
-    const { username, email, password, address } = req.body;
+    // Validate username format
+    const usernameLength = req.body.username.length;
+    if (usernameLength < 4) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Username must have atleast 4 characters.",
+      });
+    }
 
-    // user name validation
-    if (username.length < 4) {
-      return res.status(400).json({ message: "user name must be > 3" });
+    // Validate email format
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(req.body.email)) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Invalid email format. Please enter a valid email address.",
+      });
     }
-    // check username already exist
-    const existUser = await user.findOne({ username: username });
-    if (existUser) {
-      return res.status(400).json({ message: "User name already exist" });
-    }
-    const existEmail = await user.findOne({ email: email });
 
-    if (existEmail) {
-      return res.status(400).json({ message: "Email already exist" });
+    //Check the length of password
+    const password = req.body.password;
+    const passLength = password.length;
+    if (passLength < 6) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Password must be 6 characters long",
+      });
     }
-    // check password validation
-    if (password.length <= 5) {
-      res.status(500).json({ message: "password should be greater than 5" });
+    // Check username or email already exists
+    const usernameExists = await User.findOne({ username: req.body.username });
+    const emailExists = await User.findOne({ email: req.body.email });
+    if (usernameExists || emailExists) {
+      return res.status(400).json({
+        status: "Error",
+        message: usernameExists
+          ? "Username already exists"
+          : "Email already exists",
+      });
     }
-    const hashpassword = await bcrypt.hash(password, 10);
-    const newUser = new user({
-      // here i made mistake i have to call same user as defined in require (new user)
-      username: username,
-      email: email,
-      password: hashpassword,
-      address: address,
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({
+      email: req.body.email,
+      username: req.body.username,
+      password: hashedPassword,
+      address: req.body.address,
     });
-    await newUser.save();
-    return res.status(200).json({ message: "signup succesfully" });
+
+    await user.save();
+    return res.json({
+      status: "Success",
+      message: "Signup successfully!",
+    });
   } catch (error) {
-    res.status(500).json({ message: "internal server error" });
+    return res.status(500).json({
+      status: "Error",
+      message: "Internal server error",
+    });
   }
 });
 
-// sign in api
-
-router.post("/signin", async (req,res) => {
+//login
+router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    const existingUser = await user.findOne({ username });
-    if (!existingUser) {
-      res.status(400).json({ message: "Invalid credentials" });
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
-
-
-    await bcrypt.compare(password, existingUser.password, (err, data) => {
+    bcrypt.compare(password, user.password, (err, data) => {
       if (data) {
-        const authClaims=[{name:existingUser.username},{role:existingUser.role}]
-        const token=jwt.sign({authClaims},"bookstore",{
-          expiresIn:"30d",
-        })
-        res.status(200).json({ id:existingUser.id,role:existingUser.role,token:token});
+        const authClaims = [
+          { name: user.username },
+          { role: user.role },
+          { jti: jwt.sign({}, "bookStore123") },
+        ];
+        const token = jwt.sign({ authClaims }, "bookStore123", {
+          expiresIn: "30d",
+        });
+
+        res.json({
+          _id: user._id,
+          role: user.role,
+          token,
+        });
       } else {
-        res.status(400).json({ message: "Invalid Credentials" });
+        return res.status(400).json({ message: "Invalid credentials" });
       }
     });
-
-
-  } catch(error) {
- res.status(500).json({ message: "Internal server error" });
+  } catch (error) {
+    return res.status(400).json({ message: "Internal Error" });
   }
 });
 
+//Get Users (individual) Profile Data
+router.get("/getUserData", authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.headers;
 
+    const data = await User.findById(id);
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ message: "An error occurred" });
+  }
+});
 
-// get user information
-router.get("/get-user-info",authenticateToken, async(req,res)=>{
-  try{
-const {id}=req.header;
-const data=await user.findOne(id).select('-password');
-return res.status(200).json(data);
+//Update address
+router.put("/update-user-address", authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.headers;
+    const { address } = req.body;
+    await User.findByIdAndUpdate(id, { address });
+    return res.status(200).json({
+      status: "Success",
+      message: "Address updated successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "An error occurred" });
   }
-  catch(error){
-    res.status(500).json({message:"Internal server error"})
-  }
-})
-
-// update address
-router.put("/update-adress",authenticateToken, async(req,res)=>{
-  try{
-    const{id}=req.headers;
-    const {address}=req.body;
-    await user.findByIdAndUpdate(id,{address:address});
-    return res.status(200).json({message:"Adress updated succesully"})
-  }
-  catch(error)
-  {
-    res.status(500).json({message:"Intenal server error"})
-  }
-})
+});
 module.exports = router;
