@@ -22,7 +22,8 @@ const Profile = () => {
     } else {
       const fetch = async () => {
         const response = await axios.get(
-          "http://localhost:1000/api/v1/getUserData",
+          "https://book-store-h62o.onrender.com/api/v1/getUserData",
+          // "http://localhost:1000/api/v1/getUserData",
           { headers }
         );
         setProfileData(response.data);
