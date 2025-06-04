@@ -48,7 +48,7 @@ const RecentlyAdded = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "https://book-store-h62o.onrender.com/api/v1/get-recent-books"
+        "https://book-store-dqip.onrender.com/api/v1/get-recent-books"
         // "http://localhost:1000/api/v1/get-recent-books"
       );
       setBooks(response.data.data);

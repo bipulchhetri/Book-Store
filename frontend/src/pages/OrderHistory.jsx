@@ -11,8 +11,8 @@ const OrderHistory = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await axios.get(
-        "https://book-store-blush-seven.vercel.app/api/v1/get-order-history",
-        // "http://localhost:1000/api/v1/get-order-history",
+      
+        "https://book-store-dqip.onrender.com/api/v1/get-order-history",
         { headers }
       );
 

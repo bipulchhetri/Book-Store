@@ -22,8 +22,8 @@ const Cart = () => {
     } else {
       const fetch = async () => {
         const res = await axios.get(
-          "https://book-store-h62o.onrender.com/api/v1/get-user-cart",
-          // "http://localhost:1000/api/v1/get-user-cart",
+          // "https://book-store-h62o.onrender.com/api/v1/get-user-cart",
+          "https://book-store-dqip.onrender.com/api/v1/get-user-cart",
           { headers }
         );
 

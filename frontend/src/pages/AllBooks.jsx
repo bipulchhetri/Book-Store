@@ -52,8 +52,8 @@ const AllBooks = () => {
     window.scrollTo(0, 0);
     const fetch = async () => {
       const response = await axios.get(
-        "https://book-store-h62o.onrender.com"
-        // "http://localhost:1000/api/v1/get-all-books"
+
+        "https://book-store-dqip.onrender.com/api/v1/get-all-books"
       );
       setBooks(response.data.data);
     };

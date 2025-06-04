@@ -16,7 +16,7 @@ const UpdateBooks = () => {
     window.scrollTo(0, 0);
     const fetch = async () => {
       const res = await axios.get(
-        "https://book-store-h62o.onrender.com/get-book-by-id/${id}"
+        "https://book-store-dqip.onrender.com/get-book-by-id/${id}"
         // `http://localhost:1000/api/v1/get-book-by-id/${id}`
       );
 
