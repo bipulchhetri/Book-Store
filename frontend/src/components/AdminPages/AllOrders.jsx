@@ -20,7 +20,7 @@ const AllOrders = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await axios.get(
-        // "https://book-store-h62o.onrender.com",
+       
         "https://book-store-uvng.onrender.com/api/v1/get-all-orders",
         { headers }
       );
