@@ -7,10 +7,10 @@ const Footer = () => {
       title: "Home",
       link: "/",
     },
-    {
-      title: "About Us",
-      link: "/about-us",
-    },
+    // {
+    //   title: "About Us",
+    //   link: "/about-us",
+    // },
     {
       title: "All Books",
       link: "/all-books",

@@ -17,7 +17,7 @@ const UpdateBooks = () => {
     const fetch = async () => {
       const res = await axios.get(
         "https://book-store-uvng.onrender.com/get-book-by-id/${id}"
-        // `http://localhost:1000/api/v1/get-book-by-id/${id}`
+      
       );
 
       setData({
