@@ -53,7 +53,7 @@ const AllBooks = () => {
     const fetch = async () => {
       const response = await axios.get(
 
-        "https://book-store-dqip.onrender.com/api/v1/get-all-books"
+        "https://book-store-uvng.onrender.com/api/v1/get-all-books"
       );
       setBooks(response.data.data);
     };

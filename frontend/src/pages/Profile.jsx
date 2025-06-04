@@ -23,7 +23,7 @@ const Profile = () => {
       const fetch = async () => {
         const response = await axios.get(
          
-          "https://book-store-dqip.onrender.com/api/v1/getUserData",
+          "https://book-store-uvng.onrender.com/api/v1/getUserData",
           { headers }
         );
         setProfileData(response.data);

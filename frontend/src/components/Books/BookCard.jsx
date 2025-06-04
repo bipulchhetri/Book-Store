@@ -56,7 +56,7 @@ const BookCard = ({ image, title, author, price, bookid, fav }) => {
   const removeFromFavourite = async () => {
     try {
       const response = await axios.put(
-        "https://book-store-dqip.onrender.com/api/v1/remove-from-favourite",
+        "https://book-store-uvng.onrender.com/api/v1/remove-from-favourite",
         {},
         { headers }
       );

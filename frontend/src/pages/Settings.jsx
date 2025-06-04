@@ -17,7 +17,7 @@ const Settings = () => {
     const fetch = async () => {
       const response = await axios.get(
        
-        "https://book-store-dqip.onrender.com/api/v1/getUserData",
+        "https://book-store-uvng.onrender.com/api/v1/getUserData",
         { headers }
       );
       setProfileData(response.data);
@@ -28,7 +28,7 @@ const Settings = () => {
 
   const updateAddress = async () => {
     const res = await axios.put(
-      "http://localhost:1000/api/v1/update-user-address",
+      "https://book-store-uvng.onrender.com/api/v1/update-user-address",
       Value,
       {
         headers,

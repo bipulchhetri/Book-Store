@@ -16,7 +16,7 @@ const UpdateBooks = () => {
     window.scrollTo(0, 0);
     const fetch = async () => {
       const res = await axios.get(
-        "https://book-store-dqip.onrender.com/get-book-by-id/${id}"
+        "https://book-store-uvng.onrender.com/get-book-by-id/${id}"
         // `http://localhost:1000/api/v1/get-book-by-id/${id}`
       );
 
@@ -54,7 +54,7 @@ const UpdateBooks = () => {
         alert("All fields are required");
       } else {
         const response = await axios.put(
-          "http://localhost:1000/api/v1/update-book",
+          "https://book-store-uvng.onrender.com/api/v1/update-book",
           Data,
           { headers }
         );

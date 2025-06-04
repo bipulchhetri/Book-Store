@@ -12,7 +12,7 @@ const Favourite = () => {
     const fetch = async () => {
       const res = await axios.get(
        
-        "https://book-store-dqip.onrender.com/api/v1/get-favourite-books",
+        "https://book-store-uvng.onrender.com/api/v1/get-favourite-books",
         { headers }
       );
 

@@ -12,7 +12,7 @@ const OrderHistory = () => {
     const fetch = async () => {
       const res = await axios.get(
       
-        "https://book-store-dqip.onrender.com/api/v1/get-order-history",
+        "https://book-store-uvng.onrender.com/api/v1/get-order-history",
         { headers }
       );
 

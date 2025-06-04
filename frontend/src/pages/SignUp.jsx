@@ -32,7 +32,7 @@ const Signup = () => {
       } else {
         const response = await axios.post(
  
-          "https://book-store-dqip.onrender.com/api/v1/sign-up",
+          "https://book-store-uvng.onrender.com/api/v1/sign-up",
           Data
         );
         setData({ username: "", email: "", password: "", address: "" });

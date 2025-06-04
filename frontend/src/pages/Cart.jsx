@@ -23,7 +23,7 @@ const Cart = () => {
       const fetch = async () => {
         const res = await axios.get(
           // "https://book-store-h62o.onrender.com/api/v1/get-user-cart",
-          "https://book-store-dqip.onrender.com/api/v1/get-user-cart",
+          "https://book-store-uvng.onrender.com/api/v1/get-user-cart",
           { headers }
         );
 
