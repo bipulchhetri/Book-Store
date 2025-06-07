@@ -39,18 +39,6 @@ Readify is a full-stack MERN (MongoDB, Express, React, Node.js) web application 
 
 ---
 
-## 📂 Project Structure
+## 📂 Live Link
 
-bookstore/
-├── client/ # React frontend
-│ ├── components/
-│ ├── pages/
-│ ├── Store
-│ └── App.js
-├── server/ # Node.js backend
-│ ├── conn/
-│ ├── models/
-│ ├── routes/
-│ └── app.js
-
-Live Link- https://1readify0.netlify.app/
+https://1readify0.netlify.app/
