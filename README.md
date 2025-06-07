@@ -1,8 +1,56 @@
-# React + Vite
+# 📚 Readify - Full Stack Book Store App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Readify is a full-stack MERN (MongoDB, Express, React, Node.js) web application for browsing, managing, and ordering books. It offers two separate roles: **Admin** and **User**, with distinct functionalities tailored for each.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔧 Tech Stack
+
+**Frontend:**
+- React.js
+- Tailwind CSS / Core CSS
+- React Router DOM
+- Axios
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Multer (for image uploads)
+
+---
+
+## 👥 Roles & Features
+
+### 👤 User
+- 📚 View all books
+- ❤️ Add books to favorites
+- 🛒 Add books to cart
+- ✅ Place an order
+- 🔐 Register / Login
+
+### 👨‍💼 Admin
+- ➕ Add new books
+- ✏️ Update existing book details
+- ❌ Delete books
+- 📦 View all orders (optional feature)
+
+---
+
+## 📂 Project Structure
+
+bookstore/
+├── client/ # React frontend
+│ ├── components/
+│ ├── pages/
+│ ├── Store
+│ └── App.js
+├── server/ # Node.js backend
+│ ├── conn/
+│ ├── models/
+│ ├── routes/
+│ └── app.js
+
+Live Link- https://1readify0.netlify.app/
